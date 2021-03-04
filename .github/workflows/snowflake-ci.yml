@@ -28,12 +28,12 @@ jobs:
     steps:
       - name: Deploy to Snowflake QA Environment
         env:
-          SNOWFLAKE_ACCOUNT:${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_PASSWORD:${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE:${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_USER:${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_VARIABLES_QA:${{ secrets.SNOWFLAKE_VARIABLES_QA }}
-          SNOWFLAKE_WAREHOUSE:${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_VARIABLES_QA: ${{ secrets.SNOWFLAKE_VARIABLES_QA }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
           python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
           

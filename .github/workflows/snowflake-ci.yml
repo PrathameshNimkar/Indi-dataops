@@ -1,0 +1,41 @@
+name: Snowflake-CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on pull request events but only for the develop branch
+  pull_request:
+    branches: develop
+
+jobs:
+  build:
+    # Image
+    runs-on: ubuntu-latest
+
+    steps:
+      # Repository check out
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2.2.1
+        with:
+            python-version: 3.7
+      
+      - name: Azure PowerShell Action
+        uses: Azure/powershell@v1
+        with:
+          # Specify the Az PowerShell script here.
+          inlineScript: 'pip install -r requirements_snowflake_sql.txt'
+          # Azure PS version to be used to execute the script, example: 1.8.0, 2.8.0, 3.4.0. To use the latest version, specify "latest".
+          azPSVersion: "latest"
+      
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          

@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - name: Checkout Repo
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
 
       - name: Setup Python
         uses: actions/setup-python@v2.2.1
@@ -26,9 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Clone and deploy to QA environment
-      - run: |
-          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
+      - name: Deploy to Snowflake QA Environment
         env:
           SNOWFLAKE_ACCOUNT:${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_PASSWORD:${{ secrets.SNOWFLAKE_PASSWORD }}
@@ -36,4 +34,11 @@ jobs:
           SNOWFLAKE_USER:${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_VARIABLES_QA:${{ secrets.SNOWFLAKE_VARIABLES_QA }}
           SNOWFLAKE_WAREHOUSE:${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        
+        run: |
+          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
+          
+
+
+
+
+

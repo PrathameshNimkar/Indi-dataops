@@ -16,20 +16,7 @@ jobs:
         with:
             python-version: 3.7
 
-      - name: Azure PowerShell Action
-        uses: Azure/powershell@v1
+      - name: Python Dependency Installation
+        uses: py-actions/py-dependency-install@v2.1.0
         with:
-          inlineScript: 'pip install -r $GITHUB_WORKSPACE/python/requirements_snowflake_sql.txt'
-          azPSVersion: "latest"
-
-
-
-
-
-
-
-
-
-
-
-
+          path: python/requirements_snowflake_sql.txt

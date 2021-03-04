@@ -21,7 +21,6 @@ jobs:
         with:
           inlineScript: 'pip install -r python\requirements_snowflake_sql.txt'
           azPSVersion: "latest"
-          timeoutInMinutes: 1
       
           
           

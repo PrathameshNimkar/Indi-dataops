@@ -23,7 +23,7 @@ jobs:
           path: python/requirements_snowflake_sql.txt
       
       - name: Clone and deploy to QA environment
-        run: |
+      - run: |
           python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
         env:
           SNOWFLAKE_ACCOUNT:${{ secrets.SNOWFLAKE_ACCOUNT }}

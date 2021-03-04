@@ -32,9 +32,3 @@ jobs:
           SNOWFLAKE_WAREHOUSE:${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
           python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
-
-
-
-
-
-

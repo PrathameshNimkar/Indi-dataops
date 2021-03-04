@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repo
       - uses: actions/checkout@v2
 
       - name: Setup Python
@@ -20,3 +21,20 @@ jobs:
         uses: py-actions/py-dependency-install@v2.1.0
         with:
           path: python/requirements_snowflake_sql.txt
+      
+      - name: Clone and deploy to QA environment
+        env:
+          SNOWFLAKE_ACCOUNT:${{ secrets.SNOWFLAKE_ACCOUNT }}
+          SNOWFLAKE_PASSWORD:${{ secrets.SNOWFLAKE_PASSWORD }}
+          SNOWFLAKE_ROLE:${{ secrets.SNOWFLAKE_ROLE }}
+          SNOWFLAKE_USER:${{ secrets.SNOWFLAKE_USER }}
+          SNOWFLAKE_VARIABLES_QA:${{ secrets.SNOWFLAKE_VARIABLES_QA }}
+          SNOWFLAKE_WAREHOUSE:${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        run: |
+          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
+
+
+
+
+
+

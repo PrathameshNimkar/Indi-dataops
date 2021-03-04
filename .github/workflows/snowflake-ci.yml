@@ -21,7 +21,11 @@ jobs:
         uses: py-actions/py-dependency-install@v2.1.0
         with:
           path: python/requirements_snowflake_sql.txt
-      
+  
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: Clone and deploy to QA environment
       - run: |
           python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE-PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl

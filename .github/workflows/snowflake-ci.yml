@@ -13,7 +13,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Setup Python
+      - name: Setup Python Version
         uses: actions/setup-python@v2.2.1
         with:
             python-version: 3.7
@@ -24,12 +24,15 @@ jobs:
           path: python/requirements_snowflake_sql.txt
 
       - name: Deploy to Snowflake QA Environment
+        # List of secret variables imported into the environment
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        
+        # Actual code to be run
         run: |
           python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars '{"LZ": "LZ_QA", "ODS": "ODS_QA", "PUB": "PUB_QA"}' -ac -v -cl
 
@@ -40,7 +43,6 @@ jobs:
           path: |
             snow/**
             python/**
-            configuration/**
           
           
           

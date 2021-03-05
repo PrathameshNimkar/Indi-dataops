@@ -9,6 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+  
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
       - name: Setup Python
         uses: actions/setup-python@v2.2.1
         with:
@@ -18,9 +22,6 @@ jobs:
         uses: py-actions/py-dependency-install@v2.1.0
         with:
           path: python/requirements_snowflake_sql.txt
-  
-      - name: Checkout Repo
-        uses: actions/checkout@v2
 
       - name: Deploy to Snowflake QA Environment
         working-directory: ./python

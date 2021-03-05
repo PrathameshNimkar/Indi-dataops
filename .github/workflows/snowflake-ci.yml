@@ -24,7 +24,7 @@ jobs:
           path: python/requirements_snowflake_sql.txt
 
       - name: Deploy to Snowflake QA Environment
-        working-directory: ./python
+        # working-directory: ./python
         env:
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
           SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
@@ -33,7 +33,7 @@ jobs:
           SNOWFLAKE_VARIABLES_QA: ${{ secrets.SNOWFLAKE_VARIABLES_QA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          python snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars '{"LZ": "LZ_QA", "ODS": "ODS_QA", "PUB": "PUB_QA"}' -ac -v -cl
+          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars '{"LZ": "LZ_QA", "ODS": "ODS_QA", "PUB": "PUB_QA"}' -ac -v -cl
 
           
 

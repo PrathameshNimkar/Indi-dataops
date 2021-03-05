@@ -19,10 +19,6 @@ jobs:
         with:
           path: python/requirements_snowflake_sql.txt
   
-  deploy:
-    runs-on: ubuntu-latest
-    
-    steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
 

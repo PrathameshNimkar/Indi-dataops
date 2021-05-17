@@ -1,1 +1,1 @@
-# Snowflake DataOps
+# Snowflake DataOps using GitHub Actions

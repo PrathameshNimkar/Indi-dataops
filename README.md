@@ -1,1 +1,1 @@
-# snowchange_actions
+# Snowflake DataOps

@@ -33,11 +33,10 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-          SNOWFLAKE_VARIABLES_QA: ${{ secrets.SNOWFLAKE_VARIABLES_QA }}
 
         # Actual code to be run
         run: |
-          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars $SNOWFLAKE_VARIABLES_QA -ac -v -cl
+          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY_QA --vars '{"LZ": "LZ_QA", "ODS": "ODS_QA", "PUB": "PUB_QA"}' -ac -v -cl
 
       - name: Copy Snowflake Files to Artifacts Staging Directory
         uses: actions/upload-artifact@v2.2.2

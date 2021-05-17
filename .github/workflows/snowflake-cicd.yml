@@ -68,7 +68,7 @@ jobs:
       - name: Python Dependency Installation
         uses: py-actions/py-dependency-install@v2.1.0
         with:
-          path: requirements_snowflake_sql.txt
+          path: python/requirements_snowflake_sql.txt
 
       # - name: Deploy to Snowflake PROD Environment
         # Actual code to be run

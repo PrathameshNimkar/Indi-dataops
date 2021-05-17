@@ -1,1 +1,1 @@
-# indigoChart Data Ops
+# Snowflake DataOps

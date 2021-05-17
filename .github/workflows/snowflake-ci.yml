@@ -33,6 +33,7 @@ jobs:
           SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
           SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+          SNOWFLAKE_VARIABLES_QA: ${{ secrets.SNOWFLAKE_VARIABLES_QA }}
 
         # Actual code to be run
         run: |
@@ -45,8 +46,4 @@ jobs:
           path: |
             snow/**
             python/**
-
-
-
-
 

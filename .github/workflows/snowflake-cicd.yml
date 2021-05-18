@@ -13,6 +13,7 @@ env:
   SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
   SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
   SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+  GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 jobs:
   Snowflake-Build:

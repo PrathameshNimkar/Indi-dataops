@@ -53,7 +53,7 @@ jobs:
           path: |
             snow/**
             python/**
-      
+
       - name: Merge pull requests (automerge-action)
         # You may pin to the exact commit or the version.
         # uses: pascalgn/automerge-action@4d2ac8c11a7489576cef3616563b3a17122a3058
@@ -80,9 +80,12 @@ jobs:
       - name: Setup Python Version
         uses: actions/setup-python@v2.2.1
         with:
+            # Version range or exact version of a Python version to use, using SemVer's version range syntax.
             python-version: 3.7
 
       - name: Python Dependency Installation
+        # You may pin to the exact commit or the version.
+        # uses: py-actions/py-dependency-install@3c3cdbee1f1761659b685ec4b146e0f4ac59e9b4
         uses: py-actions/py-dependency-install@v2.1.0
         with:
           path: python/requirements_snowflake_sql.txt

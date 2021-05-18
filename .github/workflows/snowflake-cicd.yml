@@ -54,13 +54,10 @@ jobs:
             snow/**
             python/**
       
-      - name: Dependabot Auto Merge
+      - name: Merge pull requests (automerge-action)
         # You may pin to the exact commit or the version.
-        # uses: ahmadnassri/action-dependabot-auto-merge@c0e574b9d8c2e0e029e8e8d1d44b13ffbfd14f0a
-        uses: ahmadnassri/action-dependabot-auto-merge@v2.3.1
-        with:
-          # The GitHub token used to merge the pull-request
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+        # uses: pascalgn/automerge-action@4d2ac8c11a7489576cef3616563b3a17122a3058
+        uses: pascalgn/automerge-action@v0.14.1
 
   Snowflake-Release:
     needs: Snowflake-Build

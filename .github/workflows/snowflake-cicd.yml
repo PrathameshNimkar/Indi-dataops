@@ -1,4 +1,4 @@
-name: Snowflake-CI
+name: Snowflake-CICD
 
 on:
   pull_request:
@@ -70,7 +70,7 @@ jobs:
         with:
           path: python/requirements_snowflake_sql.txt
 
-      # - name: Deploy to Snowflake PROD Environment
+      - name: Deploy to Snowflake PROD Environment
         # Actual code to be run
-      #   run: |
-      #    python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY --vars '{"LZ": "LZ", "ODS": "ODS", "PUB": "PUB"}' -ac -v -cl
+        run: |
+          python python/snowchange.py -f snow -a $SNOWFLAKE_ACCOUNT -u $SNOWFLAKE_USER -p $SNOWFLAKE_PASSWORD -r $SNOWFLAKE_ROLE -w $SNOWFLAKE_WAREHOUSE -c ADMIN.CONTROL.CHANGE_HISTORY --vars '{"LZ": "LZ", "ODS": "ODS", "PUB": "PUB"}' -ac -v

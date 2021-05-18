@@ -1,6 +1,8 @@
 name: Snowflake-CICD
 
+# Controls when the action will run.
 on:
+  # Triggers the workflow on pull request events for the develop branch
   pull_request:
     branches: develop
 
@@ -26,11 +28,15 @@ jobs:
       - name: Setup Python Version
         uses: actions/setup-python@v2.2.1
         with:
-            python-version: 3.7
+          # Version range or exact version of a Python version to use, using SemVer's version range syntax.
+          python-version: 3.7
 
       - name: Python Dependency Installation
+        # You may pin to the exact commit or the version.
+        # uses: py-actions/py-dependency-install@3c3cdbee1f1761659b685ec4b146e0f4ac59e9b4
         uses: py-actions/py-dependency-install@v2.1.0
         with:
+          # Path to requirements.txt file
           path: python/requirements_snowflake_sql.txt
 
       - name: Deploy to Snowflake QA Environment
@@ -41,11 +47,20 @@ jobs:
       - name: Copy Snowflake Files to Artifacts Staging Directory
         uses: actions/upload-artifact@v2.2.2
         with:
+          # Artifact name
           name: ArtifactStagingDirectory
+          # A file, directory or wildcard pattern that describes what to upload
           path: |
             snow/**
             python/**
-
+      
+      - name: Dependabot Auto Merge
+        # You may pin to the exact commit or the version.
+        # uses: ahmadnassri/action-dependabot-auto-merge@c0e574b9d8c2e0e029e8e8d1d44b13ffbfd14f0a
+        uses: ahmadnassri/action-dependabot-auto-merge@v2.3.1
+        with:
+          # The GitHub token used to merge the pull-request
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
   Snowflake-Release:
     needs: Snowflake-Build
